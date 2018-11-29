@@ -17,7 +17,7 @@
             if (isset($_POST['submit']))
             {
                 $name = $_POST['login'];
-                echo "<a id="login">$name</a>"
+                echo "<a id="login">$name</a>";
             }
             ?>
         </nav>
