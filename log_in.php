@@ -13,18 +13,18 @@
                 <a href="search.html">Поиск</a>
                 <a href="howto.html">Как добраться</a> -->
                 <a id="log_in" href="log_in.html">Войти</a>
-        </nav>
-        <?php
+                <?php
             if (isset($_POST['submit']))
             {
                 $name = $_POST['login'];
-                echo $name;
+                echo "<a id="login">$name</a>"
             }
             ?>
+        </nav>
 
         <form method="post">
-            <input type="text" name="login">
-            <input type="password" name="pass">
+            <input type="text" name="login"> <br/>
+            <input type="password" name="pass"> <br/>
             <input type="submit" name="submit" value="Войти">
         </form>    
     </body>
