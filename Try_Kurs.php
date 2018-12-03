@@ -6,21 +6,15 @@
         <link rel="stylesheet" type="text/css" href="Try_Kurs.css">
     </head>
     <body>
-        <nav>
-                <a href="Try_Kurs.html">Главная</a>
-                <!-- <a href="income.html">Прибытие</a>
-                <a href="outcome.html">Отправление</a>
-                <a href="search.html">Поиск</a>
-                <a href="howto.html">Как добраться</a> -->
-                <a id="log_in" href="log_in.html">Войти</a>
-        </nav>
+        <?php
+            include_once("nav.php");
+        ?>
 
         <article1>
                 <h3>Добро пожаловать на сайт с расписанием </br></h3><h1>Курского Вокзала</h1>
         </article1>
 
         <div id="wrapper">
-                <!-- Tabs -->
                 <ul>
                     <li><a href="#image1" id="tab1"><img src="resources/tab1.jpg" alt="" title="" /></a></li>
                     <li><a href="#image2" id="tab2"><img src="resources/tab2.jpg" alt="" title="" /></a></li>
@@ -28,7 +22,6 @@
                     <li><a href="#image4" id="tab4"><img src="resources/tab4.jpg" alt="" title="" /></a></li>
                 </ul>
                  
-                <!-- Images -->
                 <div id="images">
                     <div><a name="image1"></a><img src="resources/img1.jpg" alt="" title="" /></div>
                     <div><a name="image2"></a><img src="resources/img2.jpg" alt="" title="" /></div>

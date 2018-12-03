@@ -15,8 +15,9 @@ nav {
 nav a {
     color: #ffffff;
     text-decoration: none;
-    padding: 25px;
+    padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    align: center;
     font-size: 17px;
 }
 
@@ -74,10 +75,23 @@ ul li a:hover img{
 
 h1{
     font-family: Arial, Helvetica, sans-serif;
-    color: black
+    color: black;
 }
 
-#log_in:hover{
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #515151;
+    font-size: 18px;
+    margin: 3%;
+}
+
+iframe {
+    display: block;
+    box-align: center;
+    margin: 3% auto;
+}
+
+/* #log_in:hover{
     color: #b7b7b7;
     background-color:whitesmoke;
 }
@@ -85,4 +99,40 @@ h1{
 #login {
     color: white;
     margin-right: 10%;
+} */
+
+.container {
+    width: 450px;
+    height: 330px;
+    /* border: 1px solid rgb(0, 217, 255); */
+    margin: 7% auto;
+    border-radius: 15px;
+    align: center;    
 }
+
+input[type="text"], input[type="password"]{
+    width: 380px;
+    text-align: center;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 7%;
+    align: middle;
+    border-radius: 7px;
+    border: 1px solid rgb(65, 157, 229);
+}
+
+input[type="submit"] {
+    padding-bottom: 3%; 
+    font-size: 15px;
+    cursor: pointer;
+    padding: 13px 30px;
+    margin: 20px 0 20px 0;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(65, 157, 229);
+    width: 320px;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(61, 139, 199);
+} 
