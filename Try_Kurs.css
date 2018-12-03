@@ -83,6 +83,7 @@ h4 {
     color: #515151;
     font-size: 18px;
     margin: 3%;
+    text-align: justify;
 }
 
 iframe {
@@ -136,3 +137,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: rgb(61, 139, 199);
 } 
+
+.error_msg {
+    margin-top: 20px;
+    margin-left: 33px;
+    font-size: 16px;
+    margin-bottom: -20px;
+    color: red;
+}

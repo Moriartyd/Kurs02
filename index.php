@@ -10,6 +10,7 @@
             $checker = ["login" => "admin",
                         "password" => "admin"];
             $name = "";
+            $f = 0;
             setcookie("login", $name);
             $password = "";
             if (isset($_POST['submit']))
@@ -22,7 +23,7 @@
                     setcookie("login", $name);
                 }
                 else
-                    echo "Error";
+                    $f = 1;
             }
             include_once "nav.php"
         ?>
@@ -36,6 +37,15 @@
                 <div style="text-align:center" class="pas_box">
                     <input type="password" name="pass" placeholder="Введите пароль"> <br/>
                 </div>
+
+                <?php
+                    if ($f)
+                    {
+                        echo "<div style=\"text-align:left\" class=\"error_msg\">
+                        <output>Неверный логин или пароль.</output><br/>
+                    </div>";
+                    }
+                ?>
 
                 <div style="text-align:center; margin-top: 5%;" class="button">
                     <input type="submit" name="submit" value="Войти">
