@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Курский вокзал</title>
-        <link rel="stylesheet" type="text/css" href="Try_Kurs.css">
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <link rel="stylesheet" type="text/css" href="input.css">
     </head>
     <body>
         <?php
@@ -14,7 +15,6 @@
                 or die("Ошибка" . mysql_error($link));
             
             $f = 0;
-            setcookie("login", $name);
             if (isset($_POST['reg']))
                 header("Location: registration.php");
             if (isset($_POST['submit']))
@@ -22,13 +22,10 @@
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
                 $querry = "SELECT * FROM users WHERE login LIKE '$name'";
-                // $querry_pass = "SELECT password FROM users WHERE login LIKE '$name'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
-                // $pass_db = mysqli_query($link, $querry_pass) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
                 if ($row['login'] == $name && $row['password'] == $password)
                 {
-                    echo "<h1>asdsad</h1>";
                     header("Location: Try_kurs.php");
                     setcookie("login", $name);
                 }
