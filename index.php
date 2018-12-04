@@ -21,11 +21,12 @@
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
-                $querry_login = "SELECT login FROM users WHERE login LIKE '$name'";
-                $querry_pass = "SELECT password FROM users WHERE password LIKE '$password'";
-                $name_db = mysqli_query($link, $querry_login) or die("Ошибка" . mysqli_error($link));
-                $pass_db = mysqli_query($link, $querry_pass) or die("Ошибка" . mysqli_error($link));
-                if ($name_db && $pass_db)
+                $querry = "SELECT * FROM users WHERE login LIKE '$name'";
+                // $querry_pass = "SELECT password FROM users WHERE login LIKE '$name'";
+                $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                // $pass_db = mysqli_query($link, $querry_pass) or die("Ошибка" . mysqli_error($link));
+                $row = mysqli_fetch_assoc($result);
+                if ($row['login'] == $name && $row['password'] == $password)
                 {
                     echo "<h1>asdsad</h1>";
                     header("Location: Try_kurs.php");
