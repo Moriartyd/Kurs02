@@ -7,18 +7,27 @@
     </head>
     <body>
         <?php
-            $checker = ["login" => "admin",
-                        "password" => "admin"];
             $name = "";
+            $password = "";
+            include_once("connection.php");
+            $link = mysqli_connect($host, $user, "", $database)
+                or die("Ошибка" . mysql_error($link));
+            
             $f = 0;
             setcookie("login", $name);
-            $password = "";
+            if (isset($_POST['reg']))
+                header("Location: registration.php");
             if (isset($_POST['submit']))
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
-                if ($checker['login'] == $name && $checker['password'] == $password)
+                $querry_login = "SELECT login FROM users WHERE login LIKE '$name'";
+                $querry_pass = "SELECT password FROM users WHERE password LIKE '$password'";
+                $name_db = mysqli_query($link, $querry_login) or die("Ошибка" . mysqli_error($link));
+                $pass_db = mysqli_query($link, $querry_pass) or die("Ошибка" . mysqli_error($link));
+                if ($name_db && $pass_db)
                 {
+                    echo "<h1>asdsad</h1>";
                     header("Location: Try_kurs.php");
                     setcookie("login", $name);
                 }
@@ -49,6 +58,10 @@
 
                 <div style="text-align:center; margin-top: 5%;" class="button">
                     <input type="submit" name="submit" value="Войти">
+                </div>
+
+                <div style="text-align:center; margin-top: -2%;" class="button">
+                    <input type="submit" name="reg" value="Зарегистрироваться">
                 </div>
             </form>
         </div>
