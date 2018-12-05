@@ -5,6 +5,7 @@
         <title>Курский вокзал</title>
         <link rel="stylesheet" type="text/css" href="nav.css">
         <link rel="stylesheet" type="text/css" href="input.css">
+        <link rel="stylesheet" type="text/css" href="texts.css">
     </head>
     <body>
         <?php

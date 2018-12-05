@@ -39,34 +39,45 @@ body{
 .dws-menu li a:hover {
     height: 20px;
     color: #b7b7b7;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     transition: all 0.3s ease;
 }
 
 /* Sub MENU */
-
+.dws-menu ul ul {
+    width: 100%;
+    white-space: nowrap;
+}
+/**/
 .dws-menu li ul {
     position: absolute;
     display: none;
+    /* left: 100%; */
+    background-color: #505050;
+    /* width: 100%; */
 }
 .dws-menu li:hover > ul {
     display: block;
 }
 
 .dws-menu li > ul li{
-    color: #505050;
-    width: 100%;
     align-content: center;
     border: 1px solid #505050;
     border-top: none;
 }
 
-.dws-menu li > ul li:hover{
+.dws-menu ul ul:hover{
     color: black;
-    border: 1px solid #505050;
 
 }
 
+.dws-menu li > ul li a:hover {
+    height: 20px;
+    color: #b7b7b7;
+    transition: all 0.3s ease;
+}
+
 .dws-menu li > ul li a {
-    color: #505050;
+    color: white;
+    float: left;
 }
