@@ -12,6 +12,8 @@
                 <li><a href=\"index.php\" id=\"login\">$_COOKIE[login]</a>
                     <ul>
                         <li> <a href=\"logout.php\">Выйти</a> </li>
+                        <li> <a href=\"logout.php\">Выйти</a> </li>
+                        <li> <a href=\"logout.php\">Выйти</a> </li>
                     </ul>
                 </li>
             </ul>";

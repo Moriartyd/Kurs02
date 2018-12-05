@@ -27,8 +27,8 @@ body{
 }
 
 .dws-menu > ul li a{
-    color: #ffffff;
-    display: flex;
+    color: red;
+    display: block;
     text-decoration: none;
     padding: 15px 30px 15px;
     font-family: Arial, Helvetica, sans-serif;
@@ -37,38 +37,28 @@ body{
 }
 
 .dws-menu li a:hover {
-    height: 20px;
     color: #b7b7b7;
-    /* background-color: whitesmoke; */
     transition: all 0.3s ease;
 }
 
-/* Sub MENU */
-.dws-menu ul ul {
-    width: 100%;
-    white-space: nowrap;
+.dws-menu > ul li {
+    position: relative;
 }
-/**/
+
+/* Sub MENU */
+
 .dws-menu li ul {
     position: absolute;
-    display: none;
-    /* left: 100%; */
     background-color: #505050;
-    /* width: 100%; */
 }
 .dws-menu li:hover > ul {
-    display: block;
+    display: flex
 }
 
 .dws-menu li > ul li{
     align-content: center;
-    border: 1px solid #505050;
+    border: 1px solid red;/*#505050;*/
     border-top: none;
-}
-
-.dws-menu ul ul:hover{
-    color: black;
-
 }
 
 .dws-menu li > ul li a:hover {
@@ -79,5 +69,5 @@ body{
 
 .dws-menu li > ul li a {
     color: white;
-    float: left;
+    /* float: left; */
 }
