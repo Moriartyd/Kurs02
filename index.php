@@ -17,6 +17,7 @@
             include_once("connection.php");
             $link = mysqli_connect($host, $user, "", $database)
                 or die("Ошибка" . mysql_error($link));
+            mysqli_query($link, $q) or die("" . mysqli_error($link));
             
             $f = 0;
             if (isset($_POST['reg']))
@@ -31,7 +32,8 @@
                 if ($row['login'] == $name && $row['password'] == $password)
                 {
                     header("Location: Try_kurs.php");
-                    setcookie("login", $name);
+                    setcookie("login", $row['login']);
+                    setcookie("status", $row['status']);
                 }
                 else
                     $f = 1;

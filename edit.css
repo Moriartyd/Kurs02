@@ -1,0 +1,26 @@
+.mega_container {
+    overflow: hidden;
+    box-align: center;
+}
+
+.sub_container1 {
+    height: 330px;
+    width: 450px;
+    margin: 7% auto;
+    margin-left: 300px;
+    float: left;
+    border-radius: 15px;
+    background: #888888;
+    align: center;    
+}
+
+.sub_container2 {
+    width: 450px;
+    height: 330px;
+    /* float: right; */
+    margin-right: 400px;
+    margin: 7% auto;
+    background: red;
+    border-radius: 15px;
+    align: center;    
+}

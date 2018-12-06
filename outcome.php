@@ -5,6 +5,7 @@
         <title>Отправление</title>
         <link rel="stylesheet" type="text/css" href="nav.css">
         <link rel="stylesheet" type="text/css" href="table.css">
+        <link rel="stylesheet" type="text/css" href="input.css">
     </head>
     <body>
         <?php
@@ -47,5 +48,14 @@
                     }
                 ?>
             </table>
+            <?php
+                if ($_COOKIE['status'] == '1')
+                echo "
+                <form method=\"post\"> <div style=\"text-align:center; margin-top: 5%;\" class=\"button\">
+                        <input type=\"submit\" name=\"eb\" value=\"Редактировать\">
+                    </div> </form>";
+                    if (isset($_POST['eb']))
+                        header("Location: edit.php");
+            ?>
     </body>
 </html>

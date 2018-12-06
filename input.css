@@ -1,7 +1,7 @@
 .container {
     width: 450px;
     height: 330px;
-    /* border: 1px solid rgb(0, 217, 255); */
+    float: center;
     margin: 7% auto;
     border-radius: 15px;
     align: center;    
@@ -13,7 +13,6 @@ input[type="text"], input[type="password"]{
     height: 50px;
     font-size: 18px;
     margin-top: 7%;
-    /* align: middle; */
     border-radius: 7px;
     border: 1px solid rgb(65, 157, 229);
 }
@@ -33,4 +32,4 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: rgb(61, 139, 199);
-} 
+}

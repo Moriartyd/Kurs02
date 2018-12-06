@@ -17,13 +17,17 @@
             $f = 0;
             if (isset($_POST['submit']))
             {
+                $check = $_POST['check'];
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
                 $email = $_POST['email'];
+                $stat = '0';
+                if (isset($_POST['check']))
+                    $stat = '1';
                 $phone_num = $_POST['phone_num'];
-                if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num)
-                                    VALUES ('$name','$password', '$email', '$phone_num')"))
-                    header("Location: index.php");
+                if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
+                                    VALUES ('$name','$password', '$email', '$phone_num', '$stat')"))
+                        header("Location: index.php");
                 else
                     $f = 1;
             }
@@ -56,9 +60,14 @@
                     }
                 ?>
 
+                <div style="text-align:center; margin-top: 5%;" class="pas_box">
+                    <input type="checkbox" name="check"> <a>Я здесь работаю</a>
+                </div>
+
                 <div style="text-align:center; margin-top: 5%;" class="button">
                     <input type="submit" name="submit" value="Зарегистрироваться">
                 </div>
+
             </form>
         </div>
     </body>

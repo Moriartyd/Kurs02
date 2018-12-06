@@ -6,14 +6,12 @@
         <link rel="stylesheet" type="text/css" href="nav.css">
         <link rel="stylesheet" type="text/css" href="input.css">
         <link rel="stylesheet" type="text/css" href="texts.css">
+        <link rel="stylesheet" type="text/css" href="frgments.css">
     </head>
     <body>
         <?php
         include_once("nav.php");
         ?>
-		<div class="cont">
-			<form>
-			</form>
-		</div>
+		<iframe frameborder="0" style="-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5); -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5); overflow: hidden; border: 0; width: 700px; height: 302px;" src="https://rasp.yandex.ru/informers/station/2000001/?type=schedule"></iframe>
     </body>
 </html>
