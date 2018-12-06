@@ -27,8 +27,8 @@ body{
 }
 
 .dws-menu > ul li a{
-    color: red;
-    display: block;
+    color: #ffffff;
+    display: flex;
     text-decoration: none;
     padding: 15px 30px 15px;
     font-family: Arial, Helvetica, sans-serif;
@@ -36,38 +36,47 @@ body{
     font-size: 17px;
 }
 
-.dws-menu li a:hover {
-    color: #b7b7b7;
-    transition: all 0.3s ease;
-}
-
-.dws-menu > ul li {
-    position: relative;
-}
-
-/* Sub MENU */
-
-.dws-menu li ul {
-    position: absolute;
-    background-color: #505050;
-}
-.dws-menu li:hover > ul {
-    display: flex
-}
-
-.dws-menu li > ul li{
-    align-content: center;
-    border: 1px solid red;/*#505050;*/
-    border-top: none;
-}
-
-.dws-menu li > ul li a:hover {
+.dws-menu ul li a:hover {
     height: 20px;
     color: #b7b7b7;
     transition: all 0.3s ease;
 }
 
+/* Sub MENU */
+
+/**/
+
+/* .dws-menu ul li {
+    position: relative;
+} */
+
+.dws-menu li ul {
+    position: absolute;
+    display: none;
+    background-color: #505050;
+}
+.dws-menu li:hover > ul{
+    display: inline-block;
+    min-width: 150px;
+}
+
+.dws-menu li > ul li{
+    align-content: center;
+    border: 1px solid #505050;
+    border-top: none;
+}
+
+.dws-menu ul ul:hover{
+    color: black;
+}
+
+.dws-menu li > ul li a:hover {
+    height: 20px;
+    /* color: #b7b7b7; */
+    transition: all 0.3s ease;
+}
+
 .dws-menu li > ul li a {
     color: white;
-    /* float: left; */
+    float: left;
 }

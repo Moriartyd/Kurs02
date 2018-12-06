@@ -9,6 +9,9 @@
     </head>
     <body>
         <?php
+            if (isset($_COOKIE['login']))
+                header("Location: logged_in.php");
+
             $name = "";
             $password = "";
             include_once("connection.php");
