@@ -7,7 +7,7 @@
                 <li><a href=\"Try_Kurs.php\">Главная</a></li>
                 <li><a href=\"income.php\">Прибытие</a></li>
                 <li><a href=\"outcome.php\">Отправление</a></li>
-                
+                <li><a href=\"search.php\">Поиск</a></li>
                 <li><a href=\"howto.php\">Как добраться</a></li>
                 <li><a href=\"index.php\" id=\"login\">$_COOKIE[login]</a>
                     <ul>

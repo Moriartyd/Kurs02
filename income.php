@@ -3,9 +3,9 @@
     <head>
     <meta charset="utf-8">
         <title>Прибытие</title>
-        <link rel="stylesheet" type="text/css" href="nav.css">
-        <link rel="stylesheet" type="text/css" href="table.css">
-        <link rel="stylesheet" type="text/css" href="input.css">
+        <link rel="stylesheet" type="text/css" href="styles/nav.css">
+        <link rel="stylesheet" type="text/css" href="styles/table.css">
+        <link rel="stylesheet" type="text/css" href="styles/input.css">
     </head>
     <body>
             <?php
@@ -33,7 +33,7 @@
                     $str = mysqli_fetch_assoc($result);
                     while ($i < $n['COUNT(*)'])
                     {
-                        $querry = "SELECT * FROM `income` ORDER BY 1 LIMIT 1 OFFSET $i";
+                        $querry = "SELECT * FROM `income` ORDER BY 'time' LIMIT 1 OFFSET $i";
                         $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                         $str = mysqli_fetch_assoc($result);
                         $tmp = $str['id'];

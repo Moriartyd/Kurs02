@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Курский вокзал</title>
-        <link rel="stylesheet" type="text/css" href="nav.css">
-        <link rel="stylesheet" type="text/css" href="input.css">
-        <link rel="stylesheet" type="text/css" href="texts.css">
+        <link rel="stylesheet" type="text/css" href="styles/nav.css">
+        <link rel="stylesheet" type="text/css" href="styles/input.css">
+        <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
     <body>
         <?php
@@ -33,6 +33,16 @@
                 {
                     header("Location: Try_kurs.php");
                     setcookie("login", $row['login']);
+                    if ($row['email'])
+                        setcookie("email", $row['email']);
+                    else
+                        setcookie("email", " ");
+                    
+                    if ($row['phone_num'])
+                        setcookie("phone", $row['phone_num']);
+                    else
+                        setcookie("phone", " ");
+
                     setcookie("status", $row['status']);
                 }
                 else

@@ -27,7 +27,7 @@
 
             if ($num && $departure && $destination && $time)
             {
-                $query = "INSERT INTO income (id, departure, destination, time)
+                $query = "INSERT INTO outcome (id, departure, destination, time)
                             VALUES ('$num', '$departure', '$destination', '$time')";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             } else {
@@ -40,7 +40,7 @@
             $num = $_POST['numd'];
             if ($num)
             {
-                $query = "DELETE FROM `income` WHERE `income`.`id` = $num";
+                $query = "DELETE FROM `outcome` WHERE `outcome`.`id` = $num";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }
             else

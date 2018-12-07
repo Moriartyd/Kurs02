@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Курский вокзал</title>
-        <link rel="stylesheet" type="text/css" href="nav.css">
-        <link rel="stylesheet" type="text/css" href="input.css">
-        <link rel="stylesheet" type="text/css" href="texts.css">
+        <link rel="stylesheet" type="text/css" href="styles/nav.css">
+        <link rel="stylesheet" type="text/css" href="styles/input.css">
+        <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
     <body>
         <?php
@@ -14,10 +14,11 @@
             $link = mysqli_connect($host, $user, "", $database)
             or die("Ошибка" . mysql_error($link));
 
-            $f = 0;
+            $f1 = 0;
+            $f2 = 0;
+            $check = " ";
             if (isset($_POST['submit']))
             {
-                $check = $_POST['check'];
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
                 $email = $_POST['email'];
@@ -25,11 +26,18 @@
                 if (isset($_POST['check']))
                     $stat = '1';
                 $phone_num = $_POST['phone_num'];
-                if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
+
+                if  (!$name || !$password)
+                {
+                    $f2 = 1;
+                }
+                else {
+                    if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
                                     VALUES ('$name','$password', '$email', '$phone_num', '$stat')"))
                         header("Location: index.php");
-                else
-                    $f = 1;
+                    else
+                        $f1 = 1; 
+                }
             }
         ?>
         
@@ -52,10 +60,17 @@
                 </div>
 
                 <?php
-                    if ($f)
+                    if ($f1)
                     {
                         echo "<div style=\"text-align:left\" class=\"error_msg\">
                         <output>Пользователь с таким логином уже существует</output><br/>
+                    </div>";
+                    }
+
+                    if ($f2)
+                    {
+                        echo "<div style=\"text-align:left\" class=\"error_msg\">
+                        <output>Вы не заполнили обязательные поля</output><br/>
                     </div>";
                     }
                 ?>

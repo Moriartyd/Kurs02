@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Как добраться</title>
-        <link rel="stylesheet" type="text/css" href="frgments.css">
-        <link rel="stylesheet" type="text/css" href="nav.css">
-        <link rel="stylesheet" type="text/css" href="texts.css">
+        <link rel="stylesheet" type="text/css" href="styles/frgments.css">
+        <link rel="stylesheet" type="text/css" href="styles/nav.css">
+        <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
 
     <body>

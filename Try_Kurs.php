@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Курский вокзал</title>
-        <link rel="stylesheet" type="text/css" href="nav.css">
-        <link rel="stylesheet" type="text/css" href="texts.css">
+        <link rel="stylesheet" type="text/css" href="styles/nav.css">
+        <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
     <body>
         <?php
