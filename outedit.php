@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
         <title>Курский вокзал</title>
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
@@ -10,9 +11,9 @@
     </head>
     <body>
         <?php
-        include_once("nav.php");
-        include_once("connection.php");
-        $link = mysqli_connect($host, $user, "", $database)
+        include_once("helphp/nav.php");
+        include_once("helphp/connection.php");
+        $link = mysqli_connect($host, $user, $pas, $database)
                 or die("Ошибка" . mysql_error($link));
         mysqli_query($link, $q) or die("" . mysqli_error($link));
 
@@ -28,7 +29,7 @@
             if ($num && $departure && $destination && $time)
             {
                 $query = "INSERT INTO outcome (id, departure, destination, time)
-                            VALUES ('$num', '$departure', '$destination', '$time')";
+                            VALUES (\'$num\', \'$departure\', \'$destination\', \'$time\')";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             } else {
                 $f1 = "1";
@@ -40,7 +41,7 @@
             $num = $_POST['numd'];
             if ($num)
             {
-                $query = "DELETE FROM `outcome` WHERE `outcome`.`id` = $num";
+                $query = "DELETE FROM `outcome` WHERE `outcome`.`id` = \'$num\''";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }
             else
@@ -92,7 +93,7 @@
                 <!-- </div>
                 
                 <div style="text-align:center" class="num_box"> --> 
-                    <input id="time" type="text" name="time" > <br/>
+                    <input id="time" type="text" name="time" placeholder="Время отправления" > <br/>
                 </div>
 
                 <?php
@@ -111,8 +112,5 @@
             </form>
         </div> </td>
                 </tr></table>
-        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-                    <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
-                    <script src="js/script.js" type="text/javascript">
     </body>
 </html>

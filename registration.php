@@ -2,16 +2,17 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Курский вокзал</title>
+        <title>Р</title>
+        <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
         <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
     <body>
         <?php
-            include_once "nav.php";
-            include_once "connection.php";
-            $link = mysqli_connect($host, $user, "", $database)
+            include_once "helphp/nav.php";
+            include_once "helphp/connection.php";
+            $link = mysqli_connect($host, $user, $pas, $database)
             or die("Ошибка" . mysql_error($link));
 
             $f1 = 0;
@@ -22,8 +23,9 @@
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
                 $email = $_POST['email'];
+                $word = $_POST['word'];
                 $stat = '0';
-                if (isset($_POST['check']))
+                if ($word == "qwerty")
                     $stat = '1';
                 $phone_num = $_POST['phone_num'];
 
@@ -33,7 +35,7 @@
                 }
                 else {
                     if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
-                                    VALUES ('$name','$password', '$email', '$phone_num', '$stat')"))
+                                    VALUES (\'$name\',\'$password\', \'$email\', \'$phone_num\', \'$stat\')"))
                         header("Location: index.php");
                     else
                         $f1 = 1; 
@@ -75,9 +77,13 @@
                     }
                 ?>
 
-                <div style="text-align:center; margin-top: 5%;" class="pas_box">
-                    <input type="checkbox" name="check"> <a>Я здесь работаю</a>
+                <div style="text-align:center" class="pas_box">
+                    <input type="password" name="word" placeholder="Кодовое слово для сотрудников"> <br/>
                 </div>
+
+                <!-- <div style="text-align:center; margin-top: 5%;" class="pas_box">
+                    <input type="checkbox" name="check"> <a>Я здесь работаю</a>
+                </div> -->
 
                 <div style="text-align:center; margin-top: 5%;" class="button">
                     <input type="submit" name="submit" value="Зарегистрироваться">

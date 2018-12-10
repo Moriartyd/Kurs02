@@ -1,4 +1,4 @@
 <?php
     setcookie("login", "");
-    header("Location: Try_kurs.php");
+    header("Location: main.php");
 ?>

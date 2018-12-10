@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Курский вокзал</title>
+        <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
+        <title>Личный кабинет</title>
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
         <link rel="stylesheet" type="text/css" href="styles/texts.css">
@@ -10,7 +11,7 @@
     </head>
     <body>
         <?php
-        include_once("nav.php");
+        include_once("helphp/nav.php");
         ?>
         <table class="logtable" cellpadding="50" align="left" width="100%">
             <tr>
@@ -44,7 +45,7 @@
         </table>
 
         <form method="post">
-            <div style="text-align:center; margin-top: 5%; width: 100%" class="button">
+            <div style="text-align:center; margin-top: 5%;" class="button">
                <input type="submit" name="submit" value="Удалить учетную запись">
             </div>
         </form>
@@ -52,9 +53,8 @@
                 if (isset($_POST['submit']))
                 {
                     $login = $_COOKIE['login'];
-                    // ALERT
-                    include_once("connection.php");
-                    $link = mysqli_connect($host, $user, "", $database)
+                    include_once("helphp/connection.php");
+                    $link = mysqli_connect($host, $user, $pas, $database)
                         or die("Ошибка" . mysql_error($link));
                     mysqli_query($link, $q) or die("" . mysqli_error($link));
 
@@ -62,7 +62,7 @@
                     mysqli_query($link, $query) or die("" . mysqli_error($link));
                     setcookie("login", "");
                     setcookie("status", "");
-                    header("Location: Try_Kurs.php");
+                    header("Location: main.php");
                 }
             ?>
 		</body>

@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Курский вокзал</title>
+        <title>Войти</title>
+        <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
         <link rel="stylesheet" type="text/css" href="styles/texts.css">
@@ -14,8 +15,8 @@
 
             $name = "";
             $password = "";
-            include_once("connection.php");
-            $link = mysqli_connect($host, $user, "", $database)
+            include_once("helphp/connection.php");
+            $link = mysqli_connect($host, $user, $pas, $database)
                 or die("Ошибка" . mysql_error($link));
             mysqli_query($link, $q) or die("" . mysqli_error($link));
             
@@ -26,12 +27,12 @@
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
-                $querry = "SELECT * FROM users WHERE login LIKE '$name'";
+                $querry = "SELECT * FROM users WHERE login LIKE \'$name\'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
                 if ($row['login'] == $name && $row['password'] == $password)
                 {
-                    header("Location: Try_kurs.php");
+                    header("Location: main.php");
                     setcookie("login", $row['login']);
                     if ($row['email'])
                         setcookie("email", $row['email']);
@@ -48,7 +49,7 @@
                 else
                     $f = 1;
             }
-            include_once "nav.php"
+            include_once "helphp/nav.php"
         ?>
         
         <div class="container">
