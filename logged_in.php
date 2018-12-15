@@ -54,9 +54,6 @@
                 {
                     $login = $_COOKIE['login'];
                     include_once("helphp/connection.php");
-                    $link = mysqli_connect($host, $user, $pas, $database)
-                        or die("Ошибка" . mysql_error($link));
-                    mysqli_query($link, $q) or die("" . mysqli_error($link));
 
                     $query = "DELETE FROM `users` WHERE `users`.`login` = $login";
                     mysqli_query($link, $query) or die("" . mysqli_error($link));

@@ -5,7 +5,7 @@
         <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
         <title>Курский вокзал</title>
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
-        <link rel="stylesheet" type="text/css" href="styles/input.css">
+        <link rel="stylesheet" type="text/css" href="styles/edit.css">
         <link rel="stylesheet" type="text/css" href="styles/texts.css">
         <link rel="stylesheet" type="text/css" href="styles/table.css">
     </head>
@@ -13,14 +13,17 @@
         <?php
         include_once("helphp/nav.php");
         include_once("helphp/connection.php");
-        $link = mysqli_connect($host, $user, $pas, $database)
-                or die("Ошибка" . mysql_error($link));
-        mysqli_query($link, $q) or die("" . mysqli_error($link));
 
         $f1 = "0";
         $f2 = "0";
-        if (isset($_POST['submit']))
+        if (isset($_POST['submitB']) || isset($_POST['submit']) || isset($_POST['submitA']))
         {
+            if (isset($_POST['submit']))
+                $db = 'income';
+            if (isset($_POST['submitB']))
+                $db = 'inB';
+            if (isset($_POST['submitA']))
+                $db = 'inA';
             $num = $_POST['num'];
             $departure = $_POST['depart'];
             $destination = $_POST['destin'];
@@ -28,24 +31,29 @@
 
             if ($num && $departure && $destination && $time)
             {
-                $query = "INSERT INTO income (id, departure, destination, time)
-                            VALUES (\'$num\', \'$departure\', \'$destination\', \'$time\')";
-                mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
-            } else {
-                $f1 = "1";
+                $query = "INSERT INTO `$db` (id, departure, destination, time)  VALUES (\"$num\", \"$departure\", \"$destination\", \"$time\")";
+                $res = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }
+            else
+                $f1 = 1;
         }
 
-        if (isset($_POST['delete']))
+        if (isset($_POST['deleteB']) || isset($_POST['delete']) || isset($_POST['deleteA']))
         {
+            if (isset($_POST['delete']))
+                $db = 'income';
+            if (isset($_POST['deleteB']))
+                $db = 'inB';
+            if (isset($_POST['deleteA']))
+                $db = 'inA';
             $num = $_POST['numd'];
             if ($num)
             {
-                $query = "DELETE FROM `income` WHERE `income`.`id` = \'$num\''";
+                $query = "DELETE FROM `$db` WHERE `$db`.`id` LIKE \"$num\"";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }
             else
-                $f2 = "1";
+                $f2 = 1;
         }
 
         ?>
@@ -68,9 +76,27 @@
                     }
                 ?>
 
-                <div style="text-align:center; margin-top: 5%;" class="button">
-                    <input type="submit" name="delete" value="Удалить">
-                </div>
+            <table>
+                <tr>
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="left" name="deleteB" value="Удалить вчера">
+                        </div>
+                    </th>
+
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="cen" name="delete" value="Удалить сегодня">
+                        </div>
+                    </th>
+
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="right" name="deleteA" value="Удалить завтра">
+                        </div>
+                    </th>
+                </tr>
+            </table>
 
             </form>
         </div> </td>
@@ -105,15 +131,30 @@
                     }
                 ?>
 
-                <div style="text-align:center; margin-top: 5%;" class="button">
-                    <input type="submit" name="submit" value="Добавить">
-                </div>
+            <table>
+                <tr>
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="left" name="submitB" value="Добавить вчера">
+                        </div>
+                    </th>
+
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="cen" name="submit" value="Добавить сегодня">
+                        </div>
+                    </th>
+
+                    <th>
+                        <div style="text-align:center;">
+                            <input type="submit" class="right" name="submitA" value="Добавить завтра">
+                        </div>
+                    </th>
+                </tr>
+            </table>
 
             </form>
         </div> </td>
                 </tr></table>
-        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-                    <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
-                    <script src="js/script.js" type="text/javascript">
     </body>
 </html>

@@ -48,20 +48,17 @@
                             <th>Станция назначения</th>
                             <th>Время прибытия</th>
                         </tr>";
-                $link = mysqli_connect($host, $user, $pas, $database)
-                    or die("Ошибка" . mysql_error($link));
-                mysqli_query($link, $q) or die("" . mysqli_error($link));
 
                 $value = $_POST['val'];
-                    $query = "SELECT * FROM $connect WHERE id LIKE \'$value\' OR 
-                        departure LIKE \'$value\' OR destination LIKE \'$value\' OR time LIKE \'$value\'
+                    $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 
+                        departure LIKE \"$value\" OR destination LIKE \"$value\" OR time LIKE \"$value\"
                             ORDER BY 'time' LIMIT 1 OFFSET $i";
                 $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
                 $str = mysqli_fetch_assoc($result);
                 while ($str) 
                 {
-                    $query = "SELECT * FROM $connect WHERE id LIKE \'$value\' OR 
-                        departure LIKE \'$value\' OR destination LIKE \'$value\' OR time LIKE \'$value\'
+                    $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 
+                        departure LIKE \"$value\" OR destination LIKE \"$value\" OR time LIKE \"$value\"
                             ORDER BY 'time' LIMIT 1 OFFSET $i";
                     $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
                     $str = mysqli_fetch_assoc($result);

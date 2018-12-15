@@ -12,56 +12,92 @@
             <?php
                 include_once "helphp/nav.php";
             ?>
-            <table class="ttable" border="10" cellpadding = "10" align="center">
+            <form method="post">
+            <table class="ttable" border="0" cellpadding = "1" align="center">
                 <tr>
-                    <th>№ Поезда</th>
-                    <th>Станция отправления</th>
-                    <th>Станция назначения</th>
-                    <th>Время прибытия</th>
+                    <th>
+                        <div style="text-align:center; margin-top: 5%;" class="pas_box" >
+                            <input type="radio" name="time"  value="inB"> <a>Вчера</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div style="text-align:center; margin-top: 5%;" class="pas_box" >
+                            <input type="radio" name="time"  value="income"> <a>Сегодня</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div style="text-align:center; margin-top: 5%;" class="pas_box" >
+                            <input type="radio" name="time"  value="inA"> <a>Завтра</a>
+                        </div>
+                    </th>
                 </tr>
+            </table>
+            <div style="text-align:center;">
+                    <input type="submit" name="submit" value="Показать расписание">
+            </div>
+            </form>
 
                 <?php
                     include_once("helphp/connection.php");
-                    $link = mysqli_connect($host, $user, $pas, $database)
-                    or die("Ошибка" . mysql_error($link));
                     $i = 0;
-                    $qcount = "SELECT COUNT(*) FROM income";
-                    $result = mysqli_query($link, $qcount) or die("" . mysqli_error($link));
-                    $n = mysqli_fetch_assoc($result);
-                    $querry = "SELECT * FROM `income` ORDER BY 1 LIMIT 1 OFFSET $i";
-                    $result = mysqli_query($link, $q) or die("" . mysqli_error($link));
-                    $result = mysqli_query($link, $querry) or die("" . mysqli_error($link));
-                    $str = mysqli_fetch_assoc($result);
-                    while ($i < $n['COUNT(*)'])
+                    if (isset($_POST['time']))
                     {
-                        $querry = "SELECT * FROM `income` ORDER BY 'time' LIMIT 1 OFFSET $i";
-                        $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                        echo "<table class=\"ttable\" border=\"10\" cellpadding = \"10\" align=\"center\">
+                        <tr>
+                            <th>№ Поезда</th>
+                            <th>Станция отправления</th>
+                            <th>Станция назначения</th>
+                            <th>Время прибытия</th>
+                        </tr>";
+                        $connect = $_POST['time'];
+                        $qcount = "SELECT COUNT(*) FROM $connect";
+                        $result = mysqli_query($link, $qcount) or die("" . mysqli_error($link));
+                        $n = mysqli_fetch_assoc($result);
+                        $querry = "SELECT * FROM $connect ORDER BY 1 LIMIT 1 OFFSET $i";
+                        $result = mysqli_query($link, $querry) or die("" . mysqli_error($link));
                         $str = mysqli_fetch_assoc($result);
-                        $tmp = $str['id'];
-                        echo "<tr> <th>$tmp</th>";
-                        $s = $str['departure'];
-                        echo "<th>$s</th>";
-                        $s = $str['destination'];
-                        echo "<th>$s</th>";
-                        $tmp = $str['time'];
-                        echo "<th>$tmp</th> </td>";
-                        $i++;
+                        while ($i < $n['COUNT(*)'])
+                        {
+                            $querry = "SELECT * FROM $connect ORDER BY 'time' LIMIT 1 OFFSET $i";
+                            $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                            $str = mysqli_fetch_assoc($result);
+                            $tmp = $str['id'];
+                            echo "<tr> <th>$tmp</th>";
+                            $s = $str['departure'];
+                            echo "<th>$s</th>";
+                            $s = $str['destination'];
+                            echo "<th>$s</th>";
+                            $tmp = $str['time'];
+                            echo "<th>$tmp</th> </td>";
+                            $i++;
+                        }
                     }
                 ?>
             </table>
             <?php
-                $querry = "SELECT * FROM users WHERE login LIKE '$name'";
+                include_once("helphp/connection.php");
+                $querry = 'SELECT * FROM users WHERE login LIKE "$_COOKIE[\'name\']"';
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
-                if ($row['status'] == "1")
+                echo $row['status'];
+                if ($_COOKIE['status'] == 1)
                 {
                     echo "
-                    <form method=\"post\"> <div style=\"text-align:center; margin-top: 5%;\" class=\"button\">
+                    <form method=\"post\"> <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
                             <input type=\"submit\" name=\"eb\" value=\"Редактировать\">
                         </div> </form>";
                         if (isset($_POST['eb']))
                             header("Location: inedit.php");
                 }
             ?>
+            <h1>
+            <?php
+                include_once("helphp/connection.php");
+                $querry = 'SELECT * FROM users WHERE login LIKE "$_COOKIE[\'name\']"';
+                $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                $row = mysqli_fetch_assoc($result);
+                echo $row['status'];
+                ?>
+            </h1>
     </body>
 </html>

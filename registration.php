@@ -12,8 +12,6 @@
         <?php
             include_once "helphp/nav.php";
             include_once "helphp/connection.php";
-            $link = mysqli_connect($host, $user, $pas, $database)
-            or die("Ошибка" . mysql_error($link));
 
             $f1 = 0;
             $f2 = 0;
@@ -35,7 +33,7 @@
                 }
                 else {
                     if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
-                                    VALUES (\'$name\',\'$password\', \'$email\', \'$phone_num\', \'$stat\')"))
+                                    VALUES (\"$name\",\"$password\", \"$email\", \"$phone_num\", \"$stat\")"))
                         header("Location: index.php");
                     else
                         $f1 = 1; 

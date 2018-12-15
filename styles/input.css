@@ -27,7 +27,7 @@ input[type="submit"] {
     border: none;
     color: white;
     background-color: rgb(65, 157, 229);
-    width: 320px;
+    width: auto;
 }
 
 input[type="submit"]:hover {

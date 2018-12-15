@@ -16,9 +16,6 @@
             $name = "";
             $password = "";
             include_once("helphp/connection.php");
-            $link = mysqli_connect($host, $user, $pas, $database)
-                or die("Ошибка" . mysql_error($link));
-            mysqli_query($link, $q) or die("" . mysqli_error($link));
             
             $f = 0;
             if (isset($_POST['reg']))
@@ -27,7 +24,7 @@
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
-                $querry = "SELECT * FROM users WHERE login LIKE \'$name\'";
+                $querry = "SELECT * FROM users WHERE login LIKE \"$name\"";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
                 if ($row['login'] == $name && $row['password'] == $password)
