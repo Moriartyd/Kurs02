@@ -40,21 +40,24 @@
                     include_once("helphp/connection.php");
                     if (isset($_POST['time']))
                     {
+                        //Создание шаблона таблицы
                         echo "<table class=\"ttable\" border=\"10\" cellpadding = \"10\" align=\"center\">
                         <tr>
                             <th>№ Поезда</th>
                             <th>Станция отправления</th>
                             <th>Станция назначения</th>
-                            <th>Время отправления</th>
+                            <th>Время отправления с Курского вокзала</th>
                         </tr>";
                         $connect = $_POST['time'];
                         $i = 0;
+                        //Получения количества строк в таблице
                         $qcount = "SELECT COUNT(*) FROM $connect";
                         $result = mysqli_query($link, $qcount) or die("" . mysqli_error($link));
                         $n = mysqli_fetch_assoc($result);
                         $querry = "SELECT * FROM $connect ORDER BY 2 LIMIT 1 OFFSET $i";
                         $result = mysqli_query($link, $querry) or die("" . mysqli_error($link));
                         $str = mysqli_fetch_assoc($result);
+                        //Заполняем таблицу данными из бд
                         while ($i < $n['COUNT(*)'])
                         {
                             $querry = "SELECT * FROM $connect ORDER BY 'time' LIMIT 1 OFFSET $i";
@@ -74,10 +77,13 @@
                 ?>
             </table>
             <?php
+            //Добавление кнопки "редактировать" для специальных пользователей
                 $login =  $_COOKIE['login'];
+            //Получение статуса пользователя
                 $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
+            //Если статус соответствует нужному, то  показываем кнопку
                 if ($row['status'] == '1')
 					echo "<form method=\"post\"> <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
                     <input type=\"submit\" name=\"eb\" value=\"Редактировать\">

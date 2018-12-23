@@ -16,6 +16,7 @@
 
         $f1 = "0";
         $f2 = "0";
+        //Обработка введенных данных
         if (isset($_POST['submitB']) || isset($_POST['submit']) || isset($_POST['submitA']))
         {
             if (isset($_POST['submit']))
@@ -29,15 +30,19 @@
             $destination = $_POST['destin'];
             $time = $_POST['time'];
 
+            //Обработка введенных данных
             if ($num && $departure && $destination && $time)
             {
+                //Внесение в таблицу изменений
                 $query = "INSERT INTO `$db` (id, departure, destination, time)  VALUES (\"$num\", \"$departure\", \"$destination\", \"$time\")";
                 $res = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }
+            //Обработка ошибки
             else
                 $f1 = 1;
         }
 
+        //Обработка введенных данных
         if (isset($_POST['deleteB']) || isset($_POST['delete']) || isset($_POST['deleteA']))
         {
             if (isset($_POST['delete']))
@@ -47,8 +52,10 @@
             if (isset($_POST['deleteA']))
                 $db = 'inA';
             $num = $_POST['numd'];
+            //Обработка введенных данных
             if ($num)
             {
+                //Внесение в таблицу изменений
                 $query = "DELETE FROM `$db` WHERE `$db`.`id` LIKE \"$num\"";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
             }

@@ -13,12 +13,13 @@
         <?php
             include_once "helphp/nav.php";
         ?>
-        <h2></h2>
+        <!--Подключение виджета Яндекс.Карты-->
         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aabc0226b32d79135ef198ee8267fda2f6e64122d22ef22a0819b21177a5c4fa8&amp;source=constructor" 
             width="1000" height="700" frameborder="0" align="middle">
         </iframe>
         <h4>
             <?php
+                //Вывод на экран содержимого файла
                 echo file_get_contents("resources/how_to.txt");
             ?>
         </h4>

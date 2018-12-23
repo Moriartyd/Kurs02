@@ -10,6 +10,8 @@
     </head>
     <body>
         <?php
+            //Проверка на вход
+            //Если пользователь уже вошел, то происходит переадресация
             if (isset($_COOKIE['login']))
                 header("Location: logged_in.php");
 
@@ -18,12 +20,16 @@
             include_once("helphp/connection.php");
             
             $f = 0;
+            //Обработка нажатия кнопки регистрация
             if (isset($_POST['reg']))
                 header("Location: registration.php");
+
+            //Обработка нажатия кнопки войти
             if (isset($_POST['submit']))
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
+                //проверка введенных данных
                 $password = md5($password);
                 $querry = "SELECT * FROM users WHERE login LIKE \"$name\"";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
@@ -44,6 +50,7 @@
 
                     setcookie("status", $row['status']);
                 }
+                //Обработка ошибки при неверных данных
                 else
                     $f = 1;
             }

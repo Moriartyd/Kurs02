@@ -58,8 +58,10 @@
 
             $i = 0;
             $value = "";
+            //Проверка введенных данных
             if (isset($_POST['submit']) && isset($_POST['rad']))
             {
+                //создание шаблона таблицы
                 $connect = $_POST['rad'];
                 echo "
                     <table class=\"ttable\" border=\"10\" cellpadding =\"10\" align=\"center\">
@@ -70,12 +72,14 @@
                             <th>Время прибытия</th>
                         </tr>";
 
+                //Получение данных из бд
                 $value = $_POST['val'];
                     $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 
                         departure LIKE \"$value\" OR destination LIKE \"$value\" OR time LIKE \"$value\"
                             ORDER BY 'time' LIMIT 1 OFFSET $i";
                 $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
                 $str = mysqli_fetch_assoc($result);
+                //Заполнение таблицы данными из бд
                 while ($str) 
                 {
                     $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 

@@ -40,22 +40,26 @@
                 <?php
                     include_once("helphp/connection.php");
                     $i = 0;
+                    //Проверка на заполненность полей
                     if (isset($_POST['time']))
                     {
+                        //Создание шаблона таблицы
                         echo "<table class=\"ttable\" border=\"10\" cellpadding = \"10\" align=\"center\">
                         <tr>
                             <th>№ Поезда</th>
                             <th>Станция отправления</th>
                             <th>Станция назначения</th>
-                            <th>Время прибытия</th>
+                            <th>Время прибытия на Курский вокзал</th>
                         </tr>";
                         $connect = $_POST['time'];
                         $qcount = "SELECT COUNT(*) FROM $connect";
+                        //Получения количества строк в таблице
                         $result = mysqli_query($link, $qcount) or die("" . mysqli_error($link));
                         $n = mysqli_fetch_assoc($result);
                         $querry = "SELECT * FROM $connect ORDER BY 1 LIMIT 1 OFFSET $i";
                         $result = mysqli_query($link, $querry) or die("" . mysqli_error($link));
                         $str = mysqli_fetch_assoc($result);
+                        //Заполняем таблицу данными из бд
                         while ($i < $n['COUNT(*)'])
                         {
                             $querry = "SELECT * FROM $connect ORDER BY 'time' LIMIT 1 OFFSET $i";
@@ -75,12 +79,13 @@
                 ?>
             </table>
             <?php
-                include_once("helphp/connection.php");
+                //Добавление кнопки "редактировать" для специальных пользователей
                 $login =  $_COOKIE['login'];
+                //Получение статуса пользователя
                 $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
-                echo $row['status'];
+                //Если статус соответствует нужному, то  показываем кнопку
                 if ($row['status'] == 1)
                 {
                     echo "
@@ -91,14 +96,5 @@
                             header("Location: inedit.php");
                 }
             ?>
-            <h1>
-            <?php
-                include_once("helphp/connection.php");
-                $querry = 'SELECT * FROM users WHERE login LIKE "$_COOKIE[\'name\']"';
-                $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
-                $row = mysqli_fetch_assoc($result);
-                echo $row['status'];
-                ?>
-            </h1>
     </body>
 </html>

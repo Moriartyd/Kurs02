@@ -25,12 +25,15 @@
                 $stat = '0';
                 $phone_num = $_POST['phone_num'];
 
+                //Проверка на заполненность полей
                 if  (!$name || !$password)
                 {
                     $f2 = 1;
                 }
+                //Если поля заполнены, то регистрируем пользователя
                 else {
                     $password = md5($password);
+                    //Проверка на уникальность логина
                     if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
                                     VALUES (\"$name\",\"$password\", \"$email\", \"$phone_num\", \"$stat\")"))
                         header("Location: index.php");

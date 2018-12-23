@@ -26,6 +26,7 @@
         <?php
             if (isset($_POST['submit']))
             {
+                //Проверка на заполненность полей
                 if ($_POST['last_pas'] && $_POST['new_pas'])
                 {
                     include_once("helphp/connection.php");
@@ -35,17 +36,20 @@
                     $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                     $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                     $row = mysqli_fetch_assoc($result);
+                    //Если старые пароли совпадают, то изменяем пароль
                     if ($row['password'] == md5($last_pas))
                     {
                         $new_pas = md5($new_pas);
                         $querry = "UPDATE `users` SET `password` = '$new_pas' WHERE `users`.`login` = '$login'";
                         mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                     }
+                    //Обработка ошибки
                     else
                         echo "<div style=\"text-align:left;\" class=\"error_msg\">
                         <output>Старый пароль введен неверно</output><br/>
                     </div>";
                 }
+                //Обработка ошибки
                 else
                     echo "<div style=\"text-align:left;\" class=\"error_msg\">
                         <output>Вы не заполнили все поля</output><br/>

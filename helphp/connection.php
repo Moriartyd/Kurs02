@@ -1,4 +1,5 @@
 <?php
+    //Соединение с базой данных
     $host ='localhost';// 'a260286.mysql.mchost.ru';
     $database = 'mysite';//'a260286_1';
     $user = 'root';//'a260286_1';

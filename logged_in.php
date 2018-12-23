@@ -54,22 +54,26 @@
             </div>
         </form>
             <?php
+                //Подключение кнопки "редактировать пользователя" для особых пользователей
                 include_once("helphp/connection.php");
                 $login =  $_COOKIE['login'];
                 $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
+                //Если статус пользователя совпадает с нужным, то показываем кнопку
                 if ($row['admin'] == '1')
 					echo "<form method=\"post\">
                             <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
                                 <input type=\"submit\" name=\"user_edit\" value=\"Редактировать права пользователей\">
                             </div>
                           </form>";
+                //Обработка нажаитя кнопок
                 if (isset($_POST['user_edit']))
                     header("Location: user_edit.php");
                 if (isset($_POST['edit_pas']))
                     header("Location: edit_pas.php");
 
+                //Обработка нажатия кнопки "удалить пользователя"
                 if (isset($_POST['submit']))
                 {
                     $login = $_COOKIE['login'];

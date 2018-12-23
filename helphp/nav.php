@@ -1,5 +1,6 @@
 <nav class="dws-menu">
     <?php
+    //Меню навигации
         if (isset($_COOKIE['login']))
         {
             echo "
