@@ -19,13 +19,34 @@
                 <table align="center">
                     <tr>
                 <th><div style="text-align:center; margin-top: 5%;" class="pas_box" >
-                    <input type="radio" name="rad"  value="income"> <a>Прибытие</a>
+                    <input type="radio" name="rad"  value="inB"> <a>Прибытие вчера</a>
                 </div></th>
 
                 <th><div style="text-align:center; margin-top: 5%;" class="pas_box">
-                    <input type="radio" name="rad" value="outcome"> <a>Отправление</a>
+                    <input type="radio" name="rad" value="outB"> <a>Отправление вчера</a>
                 </div></th>
                     </tr>
+
+                    <tr>
+                <th><div style="text-align:center; margin-top: 5%;" class="pas_box" >
+                    <input type="radio" name="rad"  value="income"> <a>Прибытие сегодня</a>
+                </div></th>
+
+                <th><div style="text-align:center; margin-top: 5%;" class="pas_box">
+                    <input type="radio" name="rad" value="outcome"> <a>Отправление сегодня</a>
+                </div></th>
+                    </tr>
+
+                    <tr>
+                <th><div style="text-align:center; margin-top: 5%;" class="pas_box" >
+                    <input type="radio" name="rad"  value="inA"> <a>Прибытие завтра</a>
+                </div></th>
+
+                <th><div style="text-align:center; margin-top: 5%;" class="pas_box">
+                    <input type="radio" name="rad" value="outA"> <a>Отправление завтра</a>
+                </div></th>
+                    </tr>
+
                 </table>
                 <div style="text-align:center;">
                     <input type="submit" name="submit" value="Поиск">

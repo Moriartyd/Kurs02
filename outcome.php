@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php
-            include_once "helphp/nav.php";
+            include_once("helphp/nav.php");
         ?>
         <form method="post">
         <table class="ttable" border="0" cellpadding = "1" align="center">
@@ -74,10 +74,11 @@
                 ?>
             </table>
             <?php
-                $querry = 'SELECT * FROM users WHERE login LIKE "$_COOKIE[\'name\']"';
+                $login =  $_COOKIE['login'];
+                $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
-                if ($_COOKIE['status'] == '1')
+                if ($row['status'] == '1')
 					echo "<form method=\"post\"> <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
                     <input type=\"submit\" name=\"eb\" value=\"Редактировать\">
                 </div> </form>";

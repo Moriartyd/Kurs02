@@ -5,6 +5,6 @@
     //$pas = 'Sb321w4A31X4';
     $q = "SET NAMES utf8";
 	$link = mysqli_connect($host, $user, "", $database)
-                or die("Îøèáêà" . mysql_error($link));
+                or die("ÐžÑˆÐ¸Ð±ÐºÐ°" . mysqli_error($link));
 	mysqli_query($link, $q) or die("" . mysqli_error($link));
 ?>

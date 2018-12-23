@@ -48,14 +48,34 @@
             <div style="text-align:center; margin-top: 5%;" class="button">
                <input type="submit" name="submit" value="Удалить учетную запись">
             </div>
+
+            <div style="text-align:center; margin-top: -1%;" class="button">
+                <input type="submit" name="edit_pas" value="Изменить пароль">
+            </div>
         </form>
             <?php
+                include_once("helphp/connection.php");
+                $login =  $_COOKIE['login'];
+                $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
+                $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                $row = mysqli_fetch_assoc($result);
+                if ($row['admin'] == '1')
+					echo "<form method=\"post\">
+                            <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
+                                <input type=\"submit\" name=\"user_edit\" value=\"Редактировать права пользователей\">
+                            </div>
+                          </form>";
+                if (isset($_POST['user_edit']))
+                    header("Location: user_edit.php");
+                if (isset($_POST['edit_pas']))
+                    header("Location: edit_pas.php");
+
                 if (isset($_POST['submit']))
                 {
                     $login = $_COOKIE['login'];
                     include_once("helphp/connection.php");
 
-                    $query = "DELETE FROM `users` WHERE `users`.`login` = $login";
+                    $query = "DELETE FROM `users` WHERE `users`.`login` LIKE '$login'";
                     mysqli_query($link, $query) or die("" . mysqli_error($link));
                     setcookie("login", "");
                     setcookie("status", "");

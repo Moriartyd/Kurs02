@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Р</title>
+        <title>Регистрация</title>
         <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
@@ -23,8 +23,6 @@
                 $email = $_POST['email'];
                 $word = $_POST['word'];
                 $stat = '0';
-                if ($word == "qwerty")
-                    $stat = '1';
                 $phone_num = $_POST['phone_num'];
 
                 if  (!$name || !$password)
@@ -32,6 +30,7 @@
                     $f2 = 1;
                 }
                 else {
+                    $password = md5($password);
                     if (mysqli_query($link, "INSERT INTO users (login, password, email, phone_num, status)
                                     VALUES (\"$name\",\"$password\", \"$email\", \"$phone_num\", \"$stat\")"))
                         header("Location: index.php");
@@ -74,14 +73,6 @@
                     </div>";
                     }
                 ?>
-
-                <div style="text-align:center" class="pas_box">
-                    <input type="password" name="word" placeholder="Кодовое слово для сотрудников"> <br/>
-                </div>
-
-                <!-- <div style="text-align:center; margin-top: 5%;" class="pas_box">
-                    <input type="checkbox" name="check"> <a>Я здесь работаю</a>
-                </div> -->
 
                 <div style="text-align:center; margin-top: 5%;" class="button">
                     <input type="submit" name="submit" value="Зарегистрироваться">

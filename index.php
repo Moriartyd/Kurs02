@@ -24,6 +24,7 @@
             {
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
+                $password = md5($password);
                 $querry = "SELECT * FROM users WHERE login LIKE \"$name\"";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);

@@ -76,11 +76,12 @@
             </table>
             <?php
                 include_once("helphp/connection.php");
-                $querry = 'SELECT * FROM users WHERE login LIKE "$_COOKIE[\'name\']"';
+                $login =  $_COOKIE['login'];
+                $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
                 echo $row['status'];
-                if ($_COOKIE['status'] == 1)
+                if ($row['status'] == 1)
                 {
                     echo "
                     <form method=\"post\"> <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
