@@ -31,11 +31,15 @@
                 $password = $_POST['pass'];
                 //проверка введенных данных
                 $password = md5($password);
-                $querry = "SELECT * FROM users WHERE login LIKE \"$name\"";
+                $querry = "SELECT * FROM users WHERE login LIKE '$name'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
                 if ($row['login'] == $name && $row['password'] == $password)
                 {
+                    $bonus = $row['bonus'] + 1;
+                    setcookie("bonus", 1);
+                    $querry = "UPDATE `users` SET `bonus` = '$bonus' WHERE `users`.`login` = '$name'";
+                    mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                     header("Location: main.php");
                     setcookie("login", $row['login']);
                     if ($row['email'])

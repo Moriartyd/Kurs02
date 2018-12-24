@@ -6,6 +6,7 @@
         <title>Поиск</title>
         <link rel="stylesheet" type="text/css" href="styles/nav.css">
         <link rel="stylesheet" type="text/css" href="styles/input.css">
+        <link rel="stylesheet" type="text/css" href="styles/texts.css">
     </head>
 
     <body>
@@ -48,10 +49,6 @@
                     </tr>
 
                 </table>
-                <div style="text-align:center;">
-                    <input type="submit" name="submit" value="Поиск">
-                </div>
-            </form>
 
         <?php
             include_once("helphp/connection.php");
@@ -59,11 +56,24 @@
             $i = 0;
             $value = "";
             //Проверка введенных данных
-            if (isset($_POST['submit']) && isset($_POST['rad']))
-            {
-                //создание шаблона таблицы
+            if (isset($_POST['submit']) && isset($_POST['rad'])) {
+                //Получение данных из бд
                 $connect = $_POST['rad'];
-                echo "
+                $value = $_POST['val'];
+                $query = "SELECT COUNT(*) FROM $connect WHERE id REGEXP '$value' OR 
+                        departure REGEXP '$value' OR destination REGEXP '$value' OR time REGEXP '$value'
+                            ORDER BY 'time' LIMIT 1 OFFSET $i";
+                $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                $str = mysqli_fetch_assoc($result);
+                $n = $str['COUNT(*)'];
+                if ($n) {
+                    $query = "SELECT *FROM $connect WHERE id REGEXP '$value' OR 
+                        departure REGEXP '$value' OR destination REGEXP '$value' OR time REGEXP '$value'
+                            ORDER BY 'time' LIMIT 1 OFFSET $i";
+                    $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                    $str = mysqli_fetch_assoc($result);
+                    //создание шаблона таблицы
+                    echo "
                     <table class=\"ttable\" border=\"10\" cellpadding =\"10\" align=\"center\">
                         <tr>
                             <th>№ Поезда</th>
@@ -72,21 +82,13 @@
                             <th>Время прибытия</th>
                         </tr>";
 
-                //Получение данных из бд
-                $value = $_POST['val'];
-                    $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 
-                        departure LIKE \"$value\" OR destination LIKE \"$value\" OR time LIKE \"$value\"
+                    //Заполнение таблицы данными из бд
+                    while ($i < $n) {
+                        $query = "SELECT *FROM $connect WHERE id REGEXP '$value' OR 
+                        departure REGEXP '$value' OR destination REGEXP '$value' OR time REGEXP '$value'
                             ORDER BY 'time' LIMIT 1 OFFSET $i";
-                $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
-                $str = mysqli_fetch_assoc($result);
-                //Заполнение таблицы данными из бд
-                while ($str) 
-                {
-                    $query = "SELECT * FROM $connect WHERE id LIKE \"$value\" OR 
-                        departure LIKE \"$value\" OR destination LIKE \"$value\" OR time LIKE \"$value\"
-                            ORDER BY 'time' LIMIT 1 OFFSET $i";
-                    $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
-                    $str = mysqli_fetch_assoc($result);
+                        $result = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                        $str = mysqli_fetch_assoc($result);
                         $tmp = $str['id'];
                         echo "<tr> <th>$tmp</th>";
                         $s = $str['departure'];
@@ -96,9 +98,18 @@
                         $tmp = $str['time'];
                         echo "<th>$tmp</th> </td>";
                         $i++;
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
+                else
+                    echo "<script>
+                         alert( 'Поезда не найдены' );
+                      </script>";
             }
         ?>
+            <div style="text-align:center; margin-top: 30px">
+                <input type="submit" name="submit" value="Поиск">
+            </div>
+        </form>
     </body>
 </html>

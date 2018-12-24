@@ -19,13 +19,12 @@
         </article1>
 
             <div style="float: right; margin-right: 70px">
-                <a class="twitter-timeline" data-lang="ru" data-width="220" data-height="600" data-theme="dark" href="https://twitter.com/rzd_official?ref_src=twsrc%5Etfw">Tweets by rzd_official</a>
+                <a class="twitter-timeline" data-lang="ru" data-width="220" data-height="600" data-theme="dark" href="https://twitter.com/KursVokzal?ref_src=twsrc%5Etfw">Tweets by rzd_official</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
 
             <div style="float: right; margin-right: 250px">
                 <img src="resources/main.jpg" class="main_image" >
             </div>
-
     </body>
 </html>

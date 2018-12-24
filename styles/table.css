@@ -1,12 +1,12 @@
 .ttable {
     margin-top: 50px;
     align: center;
-    border: "1";
+    margin-bottom: 150px;
 }
 
 .logtable {
     margin-top: 150px;
     align: left;
     margin-left: 300px;
-    border: "1";
+
 }

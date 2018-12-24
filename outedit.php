@@ -36,6 +36,9 @@
                 //Внесение в таблицу изменений
                 $query = "INSERT INTO `$db` (id, departure, destination, time)  VALUES (\"$num\", \"$departure\", \"$destination\", \"$time\")";
                 $res = mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                echo "<script>
+                                alert( 'Поезд добавлен' );
+                                </script>";
             }
             //Обработка ошибки
             else
@@ -58,6 +61,9 @@
                 //Внесение в таблицу изменений
                 $query = "DELETE FROM `$db` WHERE `$db`.`id` LIKE \"$num\"";
                 mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                echo "<script>
+                                alert( 'Поезд удален' );
+                                </script>";
             }
             else
                 $f2 = 1;

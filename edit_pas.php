@@ -42,6 +42,9 @@
                         $new_pas = md5($new_pas);
                         $querry = "UPDATE `users` SET `password` = '$new_pas' WHERE `users`.`login` = '$login'";
                         mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                        echo "<script>
+                                alert( 'Пароль успешно изменен' );
+                                </script>";
                     }
                     //Обработка ошибки
                     else

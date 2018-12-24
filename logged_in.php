@@ -45,10 +45,6 @@
         </table>
 
         <form method="post">
-            <div style="text-align:center; margin-top: 5%;" class="button">
-               <input type="submit" name="submit" value="Удалить учетную запись">
-            </div>
-
             <div style="text-align:center; margin-top: -1%;" class="button">
                 <input type="submit" name="edit_pas" value="Изменить пароль">
             </div>
@@ -60,11 +56,25 @@
                 $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
+            if ($row['bonus'] % 5 == 0 && $_COOKIE['bonus'] == 1) {
+                //Создание скидочного купона
+                $chars = "1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
+                $max = 6;
+                $size = StrLen($chars) - 1;
+                $password = null;
+                while ($max--)
+                    $password .= $chars[rand(0, $size)];
+                echo "<script>
+                                alert( 'Поздравляем, вы выиграли скидку \\n' +
+                                 'Ваш уникальный код: \'$password\' \\nСообщите на кассе этот код' );
+                                </script>";
+                setcookie("bonus", 2);
+            }
                 //Если статус пользователя совпадает с нужным, то показываем кнопку
                 if ($row['admin'] == '1')
 					echo "<form method=\"post\">
                             <div style=\"text-align:center; margin-top: -1%;\" class=\"button\">
-                                <input type=\"submit\" name=\"user_edit\" value=\"Редактировать права пользователей\">
+                                <input type=\"submit\" name=\"user_edit\" value=\"Редактировать пользователей\">
                             </div>
                           </form>";
                 //Обработка нажаитя кнопок
@@ -72,19 +82,6 @@
                     header("Location: user_edit.php");
                 if (isset($_POST['edit_pas']))
                     header("Location: edit_pas.php");
-
-                //Обработка нажатия кнопки "удалить пользователя"
-                if (isset($_POST['submit']))
-                {
-                    $login = $_COOKIE['login'];
-                    include_once("helphp/connection.php");
-
-                    $query = "DELETE FROM `users` WHERE `users`.`login` LIKE '$login'";
-                    mysqli_query($link, $query) or die("" . mysqli_error($link));
-                    setcookie("login", "");
-                    setcookie("status", "");
-                    header("Location: main.php");
-                }
             ?>
 		</body>
 </html>
