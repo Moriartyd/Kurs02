@@ -16,6 +16,7 @@
 
         $f1 = "0";
         $f2 = "0";
+        $f3 = "0";
         //Обработка введенных данных
         if (isset($_POST['submitB']) || isset($_POST['submit']) || isset($_POST['submitA']))
         {
@@ -58,12 +59,19 @@
             //Обработка введенных данных
             if ($num)
             {
-                //Внесение в таблицу изменений
-                $query = "DELETE FROM `$db` WHERE `$db`.`id` LIKE \"$num\"";
-                mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
-                echo "<script>
-                         alert( 'Поезд удален' );
-                      </script>";
+                $querry = "SELECT * FROM `$db` WHERE `id` LIKE '$num'";
+                $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                //Проверка на наличие поезда в базе данных
+                if (mysqli_num_rows($result) > 0) {
+                    //Внесение в таблицу изменений
+                    $query = "DELETE FROM `$db` WHERE `$db`.`id` LIKE \"$num\"";
+                    mysqli_query($link, $query) or die("Ошибка" . mysqli_error($link));
+                    echo "<script>
+                                alert( 'Поезд удален' );
+                                </script>";
+                }
+                else
+                    $f3 = 1;
             }
             else
                 $f2 = 1;
@@ -82,11 +90,13 @@
 
                 <?php
                     if ($f2)
-                    {
                         echo "<div style=\"text-align:left\" class=\"error_msg\">
                         <output>Поле не заполнено</output><br/>
                     </div>";
-                    }
+                    if ($f3)
+                        echo "<div style=\"text-align:left;\" class=\"error_msg\">
+                                    <output>Поезд не найден</output><br/>
+                                </div>";
                 ?>
 
             <table>

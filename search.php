@@ -56,10 +56,12 @@
             $i = 0;
             $value = "";
             //Проверка введенных данных
-            if (isset($_POST['submit']) && isset($_POST['rad'])) {
+            if (isset($_POST['submit']))
+                if (isset($_POST['rad']) && $_POST['val']) {
                 //Получение данных из бд
                 $connect = $_POST['rad'];
                 $value = $_POST['val'];
+                //Получение количества строк таблицы
                 $query = "SELECT COUNT(*) FROM $connect WHERE id REGEXP '$value' OR 
                         departure REGEXP '$value' OR destination REGEXP '$value' OR time REGEXP '$value'
                             ORDER BY 'time' LIMIT 1 OFFSET $i";
@@ -105,7 +107,10 @@
                     echo "<script>
                          alert( 'Поезда не найдены' );
                       </script>";
-            }
+            } else
+                echo "<div style=\"text-align:center\" class=\"error_msg\">
+                                <output>Заполните главное поле и выберите, где искать</output><br/>
+                              </div>";
         ?>
             <div style="text-align:center; margin-top: 30px">
                 <input type="submit" name="submit" value="Поиск">

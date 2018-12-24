@@ -11,6 +11,13 @@
                 <li><a href=\"search.php\">Поиск</a></li>
                 <li><a href=\"howto.php\">Как добраться</a></li>
                 <li><a href=\"index.php\" id=\"login\">$_COOKIE[login]</a>
+                ";
+            //Если мы находимся во вкладке logged_in.php, то не показываем подменю
+            if ($_SERVER['REQUEST_URI'] == "/logged_in.php")
+                echo "</li>
+                        </ul>";
+            else
+                echo"
                     <ul>
                         <li> <a href=\"logout.php\">Выйти</a> </li>
                     </ul>

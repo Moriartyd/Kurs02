@@ -48,6 +48,10 @@
             <div style="text-align:center; margin-top: -1%;" class="button">
                 <input type="submit" name="edit_pas" value="Изменить пароль">
             </div>
+
+            <div style="text-align:center; margin-top: -1%;" class="button">
+                <input type="submit" name="log_out" value="Выйти из системы">
+            </div>
         </form>
             <?php
                 //Подключение кнопки "редактировать пользователя" для особых пользователей
@@ -82,6 +86,8 @@
                     header("Location: user_edit.php");
                 if (isset($_POST['edit_pas']))
                     header("Location: edit_pas.php");
+                if (isset($_POST['log_out']))
+                    header("Location: logout.php");
             ?>
 		</body>
 </html>
