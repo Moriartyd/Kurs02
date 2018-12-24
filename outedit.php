@@ -49,6 +49,7 @@
         //Обработка введенных данных
         if (isset($_POST['deleteB']) || isset($_POST['delete']) || isset($_POST['deleteA']))
         {
+            //Получение названия нужной таблицы из input type=radio
             if (isset($_POST['delete']))
                 $db = 'outcome';
             if (isset($_POST['deleteB']))

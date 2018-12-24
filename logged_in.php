@@ -60,20 +60,21 @@
                 $querry = "SELECT * FROM users WHERE `login` LIKE '$login'";
                 $result = mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
                 $row = mysqli_fetch_assoc($result);
-            if ($row['bonus'] % 5 == 0 && $_COOKIE['bonus'] == 1) {
-                //Создание скидочного купона
-                $chars = "1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
-                $max = 6;
-                $size = StrLen($chars) - 1;
-                $password = null;
-                while ($max--)
-                    $password .= $chars[rand(0, $size)];
-                echo "<script>
+                //Даем бонус за каждый пятый вход в систему
+                if ($row['bonus'] % 5 == 0 && $_COOKIE['bonus'] == 1 && $row['bonus'] != 0) {
+                    //Создание скидочного купона
+                    $chars = "1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
+                    $max = 6;
+                    $size = StrLen($chars) - 1;
+                    $password = null;
+                    while ($max--)
+                        $password .= $chars[rand(0, $size)];
+                    echo "<script>
                                 alert( 'Поздравляем, вы выиграли скидку \\n' +
                                  'Ваш уникальный код: \'$password\' \\nСообщите на кассе этот код' );
                                 </script>";
-                setcookie("bonus", 2);
-            }
+                    setcookie("bonus", 2);
+                }
                 //Если статус пользователя совпадает с нужным, то показываем кнопку
                 if ($row['admin'] == '1')
 					echo "<form method=\"post\">

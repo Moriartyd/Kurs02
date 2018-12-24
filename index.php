@@ -36,11 +36,16 @@
                 $row = mysqli_fetch_assoc($result);
                 if ($row['login'] == $name && $row['password'] == $password)
                 {
-                    $bonus = $row['bonus'] + 1;
-                    setcookie("bonus", 1);
-                    $querry = "UPDATE `users` SET `bonus` = '$bonus' WHERE `users`.`login` = '$name'";
-                    mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                    //Если пользователь обладает правами редактировать расписание
+                    //То отключаем ему бонусную систему
+                    if ($row['status'] != 1) {
+                        $bonus = $row['bonus'] + 1;
+                        setcookie("bonus", 1);
+                        $querry = "UPDATE `users` SET `bonus` = '$bonus' WHERE `users`.`login` = '$name'";
+                        mysqli_query($link, $querry) or die("Ошибка" . mysqli_error($link));
+                    }
                     header("Location: main.php");
+                    //Установка данных пользователя через куки
                     setcookie("login", $row['login']);
                     if ($row['email'])
                         setcookie("email", $row['email']);
@@ -51,8 +56,6 @@
                         setcookie("phone", $row['phone_num']);
                     else
                         setcookie("phone", " ");
-
-                    setcookie("status", $row['status']);
                 }
                 //Обработка ошибки при неверных данных
                 else

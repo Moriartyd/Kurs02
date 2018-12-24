@@ -18,6 +18,7 @@
             $check = " ";
             if (isset($_POST['submit']))
             {
+                //Получение данных из формы
                 $name = $_POST['login'];
                 $password = $_POST['pass'];
                 $email = $_POST['email'];
@@ -55,9 +56,7 @@
 
                 <div style="text-align:center" class="num_box">
                     <input type="text" name="phone_num" placeholder="Введите номер телефона"> <br/>
-                <!-- </div>
 
-                <div style="text-align:center" class="num_box"> -->
                     <input type="text" name="email" placeholder="Введите Электронную почту"> <br/>
                 </div>
 
